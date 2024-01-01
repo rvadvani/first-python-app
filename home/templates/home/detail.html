@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="min-h-full">
+        {% include "layout.html" %}
+        <header class="bg-white shadow">
+			<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+				  <h1 class="text-3xl font-bold tracking-tight text-gray-900">Departments</h1>
+			</div>
+		 </header>
+        <main>
+            <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+                <div class="box-border box-content w-full rounded shadow-lg p-4 bg-white">
+					<a href="/employee/" class="bg-blue-200 px-6 rounded py-1 float-right ">Back</a>
+					<h1 class="text-2xl p-4">{{ employee.firstName }} {{ employee.lastName }}</h1>
+
+
+                    <table class="table-auto w-full">
+                        <tbody>
+                            <tr>
+                                <td class="border border-slate-400 px-4 py-1">Photo: </td>
+                                <td class="border border-slate-400 px-4 py-1">
+                                    <img src="/uploads{{ employee.photo }}" width="100">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-slate-400 px-4 py-1">Gender: </td>
+                                <td class="border border-slate-400 px-4 py-1">{{ employee.gender }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-slate-400 px-4 py-1">Phone: </td>
+                                <td class="border border-slate-400 px-4 py-1">{{ employee.phone }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-slate-400 px-4 py-1">Email:</td>
+                                <td class="border border-slate-400 px-4 py-1"> {{ employee.email }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-slate-400 px-4 py-1">Address:</td>
+                                <td class="border border-slate-400 px-4 py-1"> {{ employee.address }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-slate-400 px-4 py-1">City:</td>
+                                <td class="border border-slate-400 px-4 py-1"> {{ employee.city }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-slate-400 px-4 py-1">Date Of Join:</td>
+                                <td class="border border-slate-400 px-4 py-1"> {{ employee.date_of_join }}</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-slate-400 px-4 py-1">Technologies:</td>
+                                <td class="border border-slate-400 px-4 py-1"> {{ technologies }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                     <table class="table-auto border-collapse border border-slate-400 w-full mt-8">
+                        <thead>
+                            <tr>
+                                <th class="border border-slate-400 px-4 py-1" align="left">#</th>
+                                <th class="border border-slate-400 px-4 py-1" align="left">Credited Amount</th>
+                                <th class="border border-slate-400 px-4 py-1" align="left">Credited On</th>
+                                <th class="border border-slate-400 px-4 py-1" align="left">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for salary in salaries %}
+                                	<tr>
+										<td class="border border-slate-400 px-4 py-1">{{ salary.id }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ salary.salary }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ salary.credit_on }}</td>
+										<td class="border border-slate-400 px-4 py-1">
+                                            <a href="">Download</a>
+                                        </td>
+                                    </tr>
+                            {% endfor %}
+                         </tbody>
+					</table>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

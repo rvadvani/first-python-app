@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Login Page
+{% endblock %}
+
+
+{% block heading %}
+    User Login
+{% endblock %}
+
+{% block content %}
+
+    <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <div class="box-border box-content w-full rounded shadow-lg p-4 bg-white">
+
+                {% if form.errors %}
+                <div class="bg-red-200 px-4 py-2 rounded mb-4">
+                    <p>Your username and password didn't match. Please try again.</p>
+                </div>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed,
+                    please login with an account that has access.</p>
+                    {% else %}
+                    <p>Please login to see this page.</p>
+                    {% endif %}
+                {% endif %}
+
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <table class="mt-4">
+                        <tr>
+                            <td class="px-5 py-2">{{ form.username.label_tag }}</td>
+                            <td class="px-5 py-2">{{ form.username }}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-5 py-2">{{ form.password.label_tag }}</td>
+                            <td class="px-5 py-2">{{ form.password }}</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-1"></td>
+                            <td class="px-4 py-1">
+                                <input type="submit" value="login" class="bg-blue-700 px-5 py-1 text-white rounded cursor-pointer">
+                                <input type="hidden" name="next" value="{{ next }}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-1"></td>
+                            <td class="px-4 py-1">
+                                {# Assumes you set up the password_reset view in your URLconf #}
+                                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </form>
+
+
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

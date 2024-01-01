@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-slate-100">
+    <div class="flex justify-center p-4 mb-8 border">
+        <h4 class="text-3xl">Users</h4>
+    </div>
+    <div class="grid grid-cols-5 gap-4 justify-items-center ">
+
+
+        {% for user in users %}
+            <div class="box-border box-content w-10/12 rounded shadow-lg p-4 bg-white">
+                <img src="{{ user.image }}" width="50" class="border rounded-full mb-4 float-right" />
+                <p class="text-xl text-sky-900 font-semibold">{{ user.firstName }} {{ user.lastName }}</p>
+                <p>Age: {{ user.age }}</p>
+                <p>Gender: {{ user.gender }}</p>
+                <p>Phone: {{ user.phone }}</p>
+                <p>Email: {{ user.email }}</p>
+
+                <!--<a href="/users/details/{{ user.id }}" class="float-right text-blue-500">Show Detials</a>-->
+                <a href="{% url 'user.detail' user.id %}" class="float-right text-blue-500">Show Detials</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

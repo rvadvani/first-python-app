@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="min-h-full">
+        {% include "layout.html" %}
+
+		 <header class="bg-white shadow">
+			<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+				  <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+			</div>
+		 </header>
+
+        <main>
+            <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+
+
+
+				<div class="box-border box-content w-full rounded shadow-lg p-4 bg-white">
+					<a href="/employee/create/" class="bg-blue-200 px-6 rounded py-1 float-right ">Create</a>
+					<h1 class="text-4xl p-4">Employees List</h1>
+					  <table class="table-auto border-collapse border border-slate-400 w-full">
+							<thead>
+								<tr>
+									<th class="border border-slate-400 px-4 py-1">#</th>
+									<th class="border border-slate-400 px-4 py-1">Department</th>
+									<th class="border border-slate-400 px-4 py-1">Name</th>
+									<th class="border border-slate-400 px-4 py-1">Gender</th>
+									<th class="border border-slate-400 px-4 py-1">Email</th>
+									<th class="border border-slate-400 px-4 py-1">Phone</th>
+									<th class="border border-slate-400 px-4 py-1">Address</th>
+									<th class="border border-slate-400 px-4 py-1">City</th>
+									<th class="border border-slate-400 px-4 py-1">DOJ</th>
+									<th class="border border-slate-400 px-4 py-1">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for member in employees %}
+									<tr>
+										<td class="border border-slate-400 px-4 py-1">{{ member.id }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ member.department.name }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ member.firstName }} {{ member.lastName }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ member.gender }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ member.email }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ member.phone }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ member.address }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ member.city }}</td>
+										<td class="border border-slate-400 px-4 py-1">{{ member.date_of_join }}</td>
+										<td class="border border-slate-400 px-4 py-1">
+											<a href="/employee/{{ member.id }}/edit/" class="text-blue-700">Edit</a>
+											<a href="/employee/{{ member.id }}/view/" class="text-blue-700">View</a>
+											<a href="#delete" class="text-red-700">Delete</a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+					</table>
+				</div>
+
+
+
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

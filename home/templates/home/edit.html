@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="min-h-full">
+        {% include "layout.html" %}
+
+        <main>
+            <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+
+
+
+				<div class="box-border box-content w-full rounded shadow-lg p-4 bg-white ">
+					<a href="/employee/" class="bg-blue-200 px-6 rounded py-1 float-right ">Back</a>
+					<h1 class="text-4xl p-4 mb-4">Edit Employee</h1>
+                    <form class="mb-4">
+
+					    <table class="table-auto w-full">
+
+							<tbody>
+                                <tr>
+                                    <td class="px-4 py-1">Select Department</td>
+                                    <td class="px-4 py-1">
+                                        <select class="border border-slate-400 px-4 py-1 rounded w-full" name="department_id" required>
+                                            <option value="">Select Department</option>
+                                            {% for department in departments %}
+                                                <option value="{{ department.id }}">{{ department.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-1">First Name</td>
+                                    <td class="px-4 py-1">
+                                        <input class="border border-slate-400 px-4 py-1 rounded w-full" placeholder="Enter First Name" name="firstName" required value="{{ employee.firstName }}" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-1">Last Name</td>
+                                    <td class="px-4 py-1">
+                                        <input class="border border-slate-400 px-4 py-1 rounded w-full" placeholder="Enter Last Name" name="lastName" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-1">Email</td>
+                                    <td class="px-4 py-1">
+                                        <input class="border border-slate-400 px-4 py-1 rounded w-full" placeholder="Enter Email" name="email" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-1">Phone Number</td>
+                                    <td class="px-4 py-1">
+                                        <input class="border border-slate-400 px-4 py-1 rounded w-full" placeholder="Enter Phone Number" name="phone" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-1">Address</td>
+                                    <td class="px-4 py-1">
+                                        <textarea class="border border-slate-400 px-4 py-1 rounded w-full" placeholder="Enter Address" name="address" required></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-1">City</td>
+                                    <td class="px-4 py-1">
+                                        <input class="border border-slate-400 px-4 py-1 rounded w-full" placeholder="Enter City" name="city" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-1">Date Of Join</td>
+                                    <td class="px-4 py-1">
+                                        <input type="date" class="border border-slate-400 px-4 py-1 rounded w-full" placeholder="Enter Date Of Join" name="date_of_join" required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-4"></td>
+                                    <td class="px-4 py-4">
+                                        {% if user.is_authenticated %}
+                                            <button class="bg-blue-500 text-white mt-2 px-6 rounded py-1">Update</button>
+                                        {% else %}
+                                            <a class="text-blue-500 rounded" href="{% url 'login' %}?next={{ request.path }}">Login</a> to update
+                                        {% endif %}
+                                    </td>
+                                </tr>
+
+							</tbody>
+					    </table>
+                    </form>
+				</div>
+
+
+
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
